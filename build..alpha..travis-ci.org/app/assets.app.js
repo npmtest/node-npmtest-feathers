@@ -607,19 +607,36 @@ local.templateApidocHtml = '\
                 template: local.templateApidocHtml
             }, 2);
             // init exampleList
-            options.exampleList = options.exampleList.concat(options.exampleFileList.concat(
-                local.fs.readdirSync(options.dir)
-                    .sort()
-                    .filter(function (file) {
-                        return file.indexOf(options.env.npm_package_main) === 0 ||
-                            (/^(?:readme)\b/i).test(file) ||
-                            (/^(?:index|lib|test)\b.*\.js$/i).test(file);
-                    })
-            ).map(readExample))
-                .filter(function (element) {
-                    return element.trim();
-                })
-                .slice(0, 128);
+            [1, 2, 3, 4].forEach(function (depth) {
+                options.exampleList = options.exampleList.concat(
+                    // http://stackoverflow.com
+                    // /questions/4509624/how-to-limit-depth-for-recursive-file-list
+                    // find . -maxdepth 1 -mindepth 1 -name "*.js" -type f
+                    local.child_process.execSync('find "' + options.dir +
+                        '" -maxdepth ' + depth + ' -mindepth ' + depth +
+                        ' -type f | sed -e "s|' + options.dir +
+                        '/||" | grep -iv ' +
+/* jslint-ignore-begin */
+'"\
+/\\.\\|\\(\\b\\|_\\)\\(\
+archive\\|artifact\\|asset\\|\
+bower_component\\|build\\|\
+coverage\\|\
+dist\\|\
+external\\|\
+log\\|\
+min\\|\
+node_module\\|\
+rollup\\|\
+tmp\\|\
+vendor\\)s\\{0,1\\}\\(\\b\\|_\\)\
+" ' +
+/* jslint-ignore-end */
+                            ' | sort | head -n 4096').toString()
+                        .split('\n')
+                );
+            });
+            options.exampleList = options.exampleList.slice(0, 128);
             // init moduleMain
             local.tryCatchOnError(function () {
                 console.error('apidocCreate - requiring ' + options.dir + ' ...');
@@ -696,18 +713,22 @@ local.templateApidocHtml = '\
 /* jslint-ignore-begin */
 '"\
 /\\.\\|\\(\\b\\|_\\)\\(\
+doc\\|\
+example\\|\
+fixture\\|\
+mock\\|\
+spec\\|\
+test\\|\
 archive\\|artifact\\|asset\\|\
 bower_component\\|build\\|\
 coverage\\|\
-doc\\|dist\\|\
-example\\|external\\|\
-fixture\\|\
+dist\\|\
+external\\|\
 log\\|\
-min\\|mock\\|\
+min\\|\
 node_module\\|\
 rollup\\|\
-spec\\|\
-test\\|tmp\\|\
+tmp\\|\
 vendor\\)s\\{0,1\\}\\(\\b\\|_\\)\
 " ' +
 /* jslint-ignore-end */
