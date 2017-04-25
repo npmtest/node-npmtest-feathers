@@ -1,6 +1,6 @@
 # npmtest-feathers
 
-#### test coverage for  [feathers (v2.1.1)](http://feathersjs.com)  [![npm package](https://img.shields.io/npm/v/npmtest-feathers.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-feathers) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-feathers.svg)](https://travis-ci.org/npmtest/node-npmtest-feathers)
+#### basic test coverage for  [feathers (v2.1.1)](http://feathersjs.com)  [![npm package](https://img.shields.io/npm/v/npmtest-feathers.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-feathers) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-feathers.svg)](https://travis-ci.org/npmtest/node-npmtest-feathers)
 
 #### Build Better APIs, Faster than Ever.
 
@@ -10,7 +10,7 @@
 |--:|:--|
 | coverage : | [![istanbul-coverage](https://npmtest.github.io/node-npmtest-feathers/build/coverage.badge.svg)](https://npmtest.github.io/node-npmtest-feathers/build/coverage.html/index.html)|
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-feathers/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-feathers/build/test-report.html)|
-| build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-feathers/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-feathers/tree/gh-pages/build)|
+| test-server-github : | [![github.com test-server](https://npmtest.github.io/node-npmtest-feathers/GitHub-Mark-32px.png)](https://npmtest.github.io/node-npmtest-feathers/build/app/index.html) | | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-feathers/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-feathers/tree/gh-pages/build)|
 
 - [https://npmtest.github.io/node-npmtest-feathers/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-feathers/build/coverage.html/index.html)
 
@@ -142,7 +142,8 @@
         "./index.d.ts",
         "./client.d.ts"
     ],
-    "version": "2.1.1"
+    "version": "2.1.1",
+    "bin": {}
 }
 ```
 
